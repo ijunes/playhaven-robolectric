@@ -55,6 +55,7 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Rect;
+import android.graphics.RectF;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
@@ -375,6 +376,7 @@ public class Robolectric {
                 ShadowRadioGroup.class,
                 ShadowRatingBar.class,
                 ShadowRect.class,
+                ShadowRectF.class,
                 ShadowResolveInfo.class,
                 ShadowRemoteCallbackList.class,
                 ShadowRemoteViews.class,
@@ -903,6 +905,10 @@ public class Robolectric {
         return (ShadowRect) shadowOf_(instance);
     }
 
+    public static ShadowRectF shadowOf(RectF instance) {
+        return (ShadowRectF) shadowOf_(instance);
+    }
+    
     public static ShadowRatingBar shadowOf(RatingBar instance) {
         return (ShadowRatingBar) shadowOf_(instance);
     }
