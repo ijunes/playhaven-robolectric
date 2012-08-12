@@ -87,6 +87,7 @@ import android.os.Message;
 import android.os.Parcel;
 import android.os.PowerManager;
 import android.os.ResultReceiver;
+import android.os.SystemClock;
 import android.os.Vibrator;
 import android.preference.DialogPreference;
 import android.preference.ListPreference;
@@ -402,6 +403,7 @@ public class Robolectric {
                 ShadowSpinner.class,
                 ShadowSyncResult.class,
                 ShadowSyncResult.ShadowSyncStats.class,
+                ShadowSystemClock.class,
                 ShadowSQLiteProgram.class,
                 ShadowSQLiteDatabase.class,
                 ShadowSQLiteCursor.class,
@@ -549,8 +551,8 @@ public class Robolectric {
         return (ShadowAudioManager) shadowOf_(instance);
     }
 
-    public static ShadowAudioManager shadowOf(Base64 instance) {
-        return (ShadowAudioManager) shadowOf_(instance);
+    public static ShadowBase64 shadowOf(Base64 instance) {
+        return (ShadowBase64) shadowOf_(instance);
     }
     
     public static ShadowBitmap shadowOf(Bitmap other) {
@@ -1006,6 +1008,10 @@ public class Robolectric {
         return (ShadowStateListDrawable) shadowOf_(instance);
     }
 
+    public static ShadowSystemClock shadowOf(SystemClock instance) {
+        return (ShadowSystemClock) shadowOf_(instance);
+    }
+    
     public static ShadowTabHost shadowOf(TabHost instance) {
         return (ShadowTabHost) shadowOf_(instance);
     }

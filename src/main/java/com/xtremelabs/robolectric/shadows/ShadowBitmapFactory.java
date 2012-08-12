@@ -55,6 +55,10 @@ public class ShadowBitmapFactory {
         return create(is.toString().replaceFirst("stream for ", ""), opts);
     }
 
+    @Implementation
+    public static Bitmap decodeByteArray (byte[] data, int offset, int length) {
+    	return create("Bytes length: " + data.length, new BitmapFactory.Options());
+    }
     static Bitmap create(String name) {
         return create(name, new BitmapFactory.Options());
     }
