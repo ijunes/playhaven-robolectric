@@ -64,6 +64,7 @@ public class ShadowBase64 {
 
     /* package */ static abstract class Coder {
         public byte[] output;
+
         public int op;
 
         /**

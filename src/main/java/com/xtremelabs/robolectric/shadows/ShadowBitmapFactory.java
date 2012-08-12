@@ -30,6 +30,23 @@ public class ShadowBitmapFactory {
         shadowOf(bitmap).setLoadedFromResourceId(id);
         return bitmap;
     }
+    
+    @Implementation
+    public static Bitmap decodeByteArray(byte[] data, int offset, int length, BitmapFactory.Options opts) {
+        if ((offset | length) < 0 || data.length < offset + length) {
+            throw new ArrayIndexOutOfBoundsException();
+        }
+        String desc = new String(data);
+        if (offset != 0 && length != data.length) {
+            desc += " bytes " + offset + ".." + length;
+        }
+        return (opts == null) ? create(desc) : create(desc, opts);
+    }
+    
+    @Implementation
+    public static Bitmap decodeByteArray(byte[] data, int offset, int length) {
+        return decodeByteArray(data, offset, length, null);
+    }
 
     private static String getResourceName(int id) {
         return shadowOf(Robolectric.application).getResourceLoader().getNameForId(id);
