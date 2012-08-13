@@ -19,16 +19,25 @@ public class ShadowAsyncTask<Params, Progress, Result> {
 
     @RealObject private AsyncTask<Params, Progress, Result> realAsyncTask;
     
-    private final FutureTask<Result> future;
+    private FutureTask<Result> future;
     private final BackgroundWorker worker;
     private AsyncTask.Status status = AsyncTask.Status.PENDING;
     
 	public ShadowAsyncTask() {
 		worker = new BackgroundWorker();
+		// TODO: write unit tests
+		createFuture();
+	}
+
+	private void createFuture() {
 		future = new FutureTask<Result>(worker) {
         	@Override
         	protected void done() {
                 status = AsyncTask.Status.FINISHED;
+                
+                if (Robolectric.getAsyncTasksReusable())
+                	createFuture();
+                
 				try {
 					final Result result = get();
 					Robolectric.getUiThreadScheduler().post(new Runnable() {
@@ -51,7 +60,7 @@ public class ShadowAsyncTask<Params, Progress, Result> {
         	}
         };
 	}
-
+	
 	@Implementation
     public boolean isCancelled() {
         return future.isCancelled();
@@ -108,7 +117,7 @@ public class ShadowAsyncTask<Params, Progress, Result> {
             }
         });
     }
-
+    
     private ShadowAsyncTaskBridge<Params, Progress, Result> getBridge() {
         return new ShadowAsyncTaskBridge<Params, Progress, Result>(realAsyncTask);
     }

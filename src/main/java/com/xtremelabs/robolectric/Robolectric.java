@@ -174,6 +174,8 @@ import com.xtremelabs.robolectric.util.Scheduler;
 public class Robolectric {
     public static Application application;
 
+    private static boolean asyncTasksReusable = false;
+    
     public static <T> T newInstanceOf(Class<T> clazz) {
         return RobolectricInternals.newInstanceOf(clazz);
     }
@@ -213,6 +215,10 @@ public class Robolectric {
         ShadowWrangler.getInstance().logMissingInvokedShadowMethods();
     }
 
+    public static boolean getAsyncTasksReusable() {
+    	return asyncTasksReusable;
+    }
+    
     public static List<Class<?>> getDefaultShadowClasses() {
         return Arrays.asList(
                 ShadowAbsListView.class,
@@ -1273,6 +1279,11 @@ public class Robolectric {
         getFakeHttpLayer().setDefaultHttpResponse(statusCode, responseBody);
     }
 
+    public static void setAsyncTasksReusable(boolean areReusable) {
+    	Robolectric.asyncTasksReusable = areReusable;
+    }
+    
+    
     public static void setDefaultHttpResponse(HttpResponse defaultHttpResponse) {
         getFakeHttpLayer().setDefaultHttpResponse(defaultHttpResponse);
     }
