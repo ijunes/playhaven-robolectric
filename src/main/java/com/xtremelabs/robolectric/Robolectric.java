@@ -8,6 +8,7 @@ import java.util.List;
 import org.apache.http.Header;
 import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
+import org.apache.http.conn.scheme.SchemeRegistry;
 import org.apache.http.impl.client.DefaultRequestDirector;
 
 import android.accounts.AccountManager;
@@ -392,6 +393,7 @@ public class Robolectric {
                 ShadowResources.class,
                 ShadowResources.ShadowTheme.class,
                 ShadowScanResult.class,
+                ShadowSchemeRegistry.class,
                 ShadowScrollView.class,
                 ShadowSeekBar.class,
                 ShadowSensorManager.class,
@@ -944,7 +946,11 @@ public class Robolectric {
     public static ShadowScanResult shadowOf(ScanResult instance) {
         return (ShadowScanResult) shadowOf_(instance);
     }
-
+    
+    public static ShadowSchemeRegistry shadowOf(SchemeRegistry instance) {
+        return (ShadowSchemeRegistry) shadowOf_(instance);
+    }
+    
     public static ShadowScrollView shadowOf(ScrollView instance) {
         return (ShadowScrollView) shadowOf_(instance);
     }
