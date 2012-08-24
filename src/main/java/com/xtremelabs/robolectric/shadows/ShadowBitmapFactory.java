@@ -37,6 +37,10 @@ public class ShadowBitmapFactory {
             throw new ArrayIndexOutOfBoundsException();
         }
         String desc = new String(data);
+        
+        // if developers want to test an invalid image the image must contain the words
+        if (desc.contains("invalid") || desc.contains("null")) return null;
+
         if (offset != 0 && length != data.length) {
             desc += " bytes " + offset + ".." + length;
         }
