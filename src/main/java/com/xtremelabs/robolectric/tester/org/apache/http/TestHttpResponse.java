@@ -14,6 +14,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -36,11 +37,21 @@ public class TestHttpResponse extends HttpResponseStub {
 
     public TestHttpResponse(int statusCode, String responseBody) {
         this.statusCode = statusCode;
-        this.responseBody = responseBody.getBytes();
+        try {
+        	this.responseBody = responseBody.getBytes("UTF-8");        	
+        } catch (UnsupportedEncodingException e) {
+        	e.printStackTrace();
+        }
     }
 
     public TestHttpResponse(int statusCode, String responseBody, Header... headers) {
-        this(statusCode, responseBody.getBytes(), headers);
+    	this.statusCode = statusCode;
+    	try {
+    		this.responseBody = responseBody.getBytes("UTF-8");
+    	} catch (UnsupportedEncodingException e) {
+        	e.printStackTrace();
+        }
+    	this.headers = headers;
     }
 
     public TestHttpResponse(int statusCode, byte[] responseBody, Header... headers) {
