@@ -21,6 +21,7 @@ import static com.xtremelabs.robolectric.Robolectric.shadowOf;
 @Implements(Canvas.class)
 public class ShadowCanvas {
     private List<PathPaintHistoryEvent> pathPaintEvents = new ArrayList<PathPaintHistoryEvent>();
+    private List<TextPaintHistoryEvent> textPaintEvents = new ArrayList<TextPaintHistoryEvent>();
     private List<CirclePaintHistoryEvent> circlePaintEvents = new ArrayList<CirclePaintHistoryEvent>();
     private Paint drawnPaint;
     private Bitmap targetBitmap = newInstanceOf(Bitmap.class);
@@ -64,6 +65,13 @@ public class ShadowCanvas {
         drawnPaint = paint;
     }
 
+    @Implementation
+    public void drawText (String text, float x, float y, Paint paint) {
+    	drawnPaint = paint;
+    	
+    	textPaintEvents.add(new TextPaintHistoryEvent(text, new PointF(x, y), paint));
+    }
+    
     @Implementation
     public void drawColor(int color) {
         appendDescription("draw color " + color);
@@ -126,6 +134,10 @@ public class ShadowCanvas {
         return circlePaintEvents.size();
     }
 
+    public int getTextPaintHistoryCount() {
+        return textPaintEvents.size();
+    }
+    
     public boolean hasDrawnPath() {
         return getPathPaintHistoryCount() > 0;
     }
@@ -134,14 +146,30 @@ public class ShadowCanvas {
         return circlePaintEvents.size() > 0;
     }
 
+    public boolean hasDrawnText() {
+        return textPaintEvents.size() > 0;
+    }
+    
     public Paint getDrawnPathPaint(int i) {
         return pathPaintEvents.get(i).pathPaint;
+    }
+
+    public Paint getDrawnTextPaint(int i) {
+    	return textPaintEvents.get(i).textPaint;
     }
 
     public Path getDrawnPath(int i) {
         return pathPaintEvents.get(i).drawnPath;
     }
 
+    public String getDrawnText(int i) {
+        return textPaintEvents.get(i).text;
+    }
+    
+    public PointF getDrawnTextPoint(int i) {
+        return textPaintEvents.get(i).textPoint;
+    }
+    
     public CirclePaintHistoryEvent getDrawnCircle(int i) {
         return circlePaintEvents.get(i);
     }
@@ -162,6 +190,18 @@ public class ShadowCanvas {
         PathPaintHistoryEvent(Path drawnPath, Paint pathPaint) {
             this.drawnPath = drawnPath;
             this.pathPaint = pathPaint;
+        }
+    }
+    
+    private static class TextPaintHistoryEvent {
+        private String text;
+        private PointF textPoint;
+        private Paint textPaint;
+        
+        TextPaintHistoryEvent(String text, PointF textPoint, Paint paint) {
+            this.text = text;
+            this.textPoint = textPoint;
+            this.textPaint = paint;
         }
     }
 
