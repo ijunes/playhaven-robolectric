@@ -53,6 +53,16 @@ public class TestHttpResponse extends HttpResponseStub {
         }
     	this.headers = headers;
     }
+    
+    public TestHttpResponse(int statusCode, String responseBody, String encoding, Header... headers) {
+        this.statusCode = statusCode;
+        try {
+            this.responseBody = responseBody.getBytes(encoding);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        this.headers = headers;
+    }
 
     public TestHttpResponse(int statusCode, byte[] responseBody, Header... headers) {
         this.statusCode = statusCode;
@@ -206,6 +216,15 @@ public class TestHttpResponse extends HttpResponseStub {
         @Override public Header getContentType() {
             for (Header header : headers) {
                 if (header.getName().equals("Content-Type")) {
+                    return header;
+                }
+            }
+            return null;
+        }
+        
+        @Override public Header getContentEncoding() {
+            for (Header header : headers) {
+                if (header.getName().equals("Content-Encoding")) {
                     return header;
                 }
             }

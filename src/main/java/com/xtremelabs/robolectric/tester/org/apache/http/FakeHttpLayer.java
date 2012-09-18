@@ -37,6 +37,10 @@ public class FakeHttpLayer {
     public void addPendingHttpResponse(int statusCode, String responseBody, Header... headers) {
         addPendingHttpResponse(new TestHttpResponse(statusCode, responseBody, headers));
     }
+    
+    public void addPendingHttpResponse(int statusCode, String responseBody, String encoding, Header... headers) {
+        addPendingHttpResponse(new TestHttpResponse(statusCode, responseBody, encoding, headers));
+    }
 
     public void addPendingHttpResponse(final HttpResponse httpResponse) {
         addPendingHttpResponse(new HttpResponseGenerator() {

@@ -1151,6 +1151,11 @@ public class Robolectric {
     public static void addPendingHttpResponse(int statusCode, String responseBody, Header... headers) {
         getFakeHttpLayer().addPendingHttpResponse(statusCode, responseBody, headers);
     }
+    
+    public static void addPendingHttpResponseWithEncoding(int statusCode, String responseBody, 
+            String encoding, Header... headers) {
+        getFakeHttpLayer().addPendingHttpResponse(statusCode, responseBody, encoding, headers);
+    }
 
     /**
      * Sets up an HTTP response to be returned by calls to Apache's {@code HttpClient} implementers.
