@@ -134,7 +134,9 @@
                 </configuration>
             </plugin>
             
-            <!-- Don't run any of the unit tests? -->
+            <!-- Don't run any of the unit tests?.
+                 Do they mean includes? We need to come back to this.
+            -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -164,7 +166,8 @@
                     </execution>
                 </executions>
             </plugin>
-			<!-- required for testing robolectric-sqlite -->
+            
+			      <!-- required for testing robolectric-sqlite -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
@@ -196,54 +199,6 @@
         </plugins>
     </build>
 
-    <profiles>
-        <profile>
-            <id>ant-deps</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <artifactId>maven-antrun-plugin</artifactId>
-                        <version>1.6</version>
-                        <executions>
-                            <execution>
-                                <id>clean-dependencies</id>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>run</goal>
-                                </goals>
-                                <configuration>
-                                    <target>
-                                        <delete dir="${project.basedir}/lib/main" />
-                                        <mkdir dir="${project.basedir}/lib/main" />
-                                    </target>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <artifactId>maven-dependency-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>copy-dependencies</id>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>copy-dependencies</goal>
-                                </goals>
-                                <configuration>
-                                    <outputDirectory>${project.basedir}/lib/main</outputDirectory>
-                                    <overWriteReleases>false</overWriteReleases>
-                                    <overWriteSnapshots>false</overWriteSnapshots>
-                                    <overWriteIfNewer>true</overWriteIfNewer>
-                                    <excludeArtifactIds>android,maps,mockito-core</excludeArtifactIds>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
-
     <issueManagement>
         <system>PivotalTracker</system>
         <url>https://www.pivotaltracker.com/projects/197395</url>
@@ -262,6 +217,9 @@
         <url>https://ci.playhaven.com/jenkins</url>
     </ciManagement>
 
+    <!--
+      We have a number of developers on this project.
+    -->
     <developers>
         <developer>
             <id>sstewart</id>
