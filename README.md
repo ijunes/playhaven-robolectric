@@ -1,14 +1,9 @@
-<a name="README">[Robolectric](http://pivotal.github.com/robolectric/index.html)</a>
-=======
+**A slightly modified version of Robolectric**
 
-**An Android Testing Framework**
+The Playhaven development team employs a slightly modified version of Robolectric in an extensive test suite. The team occasionally merges this internal fork with the current version of Robolectric. This project is included in the main SDK as a Maven module.
 
-Robolectric can be built using either Maven or Ant. Both Eclipse (with the M2Eclipse plug-in) and
+Playhaven's version of Robolectric can only be built with Maven for simplicity. Both Eclipse (with the M2Eclipse plug-in) and
 IntelliJ can import the pom.xml file and will automatically generate their project files from it.
 
 For more information about how to use Robolectric on your project, extend its functionality, and join the community of
 contributors, please see: [http://pivotal.github.com/robolectric/index.html](http://pivotal.github.com/robolectric/index.html)
-
-[![Build Status](https://secure.travis-ci.org/pivotal/robolectric.png?branch=master)](http://travis-ci.org/pivotal/robolectric)
-
-http://ci.robolectric.org
