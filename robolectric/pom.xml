@@ -3,9 +3,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.playhaven.pivotallabs</groupId>
-        <artifactId>roblectric</artifactId>
-        <version>5</version>
+      <groupId>com.playhaven.pivotallabs</groupId>
+      <artifactId>robolectric</artifactId>
+      <version>1.2-SNAPSHOT</version>
     </parent>
     
     <properties>
@@ -89,20 +89,27 @@
             <version>${android.dependency.version}</version>
         </dependency>
 
+        <!-- We need the android libs installed before we run.
         <dependency>
-            <groupId>com.google.android.maps</groupId>
-            <artifactId>maps</artifactId>
-            <version>10_r2</version>
+            <groupId>com.simpligility.android.sdk-deployer</groupId>
+            <artifactId>android-add-ons</artifactId>
+            <version>2.1.0</version>
         </dependency>
-
-        <!-- Do we need this dependency?
+        -->
+        
+        <!-- We need this dependency because Robolectric even mocks support classes? -->
         <dependency>
             <groupId>com.google.android</groupId>
             <artifactId>support-v4</artifactId>
             <version>r6</version>
         </dependency>
-        -->
-
+        
+        <dependency>
+          <groupId>com.google.android.maps</groupId>
+          <artifactId>maps</artifactId>
+          <version>10_r2</version>
+        </dependency>
+                
         <!-- Mocking framework for Java -->
         <dependency>
             <groupId>org.mockito</groupId>
@@ -141,8 +148,8 @@
                 </configuration>
             </plugin>
             
-            <!-- Don't run any of the unit tests?.
-                 Do they mean includes? We need to come back to this.
+            <!-- Interesting subtlety here: we are excluding all files that *start*
+            with Test instead of *end* with Test
             -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
