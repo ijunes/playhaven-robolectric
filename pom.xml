@@ -8,20 +8,13 @@
         <version>5</version>
     </parent>
     
-    <groupId>com.playhaven.pivotallabs</groupId>
-    <artifactId>robolectric</artifactId>
-    <version>1.2-SNAPSHOT</version>
-    <packaging>pom</packaging>
-    <name>Playhaven Robolectric</name>
-    <description>A slightly modified version of the outstanding Robolectric framework from Pivotal Labs.</description>
-    <url>http://playhaven.com/</url>
-    
     <properties>
         <android.dependency.version>2.3.3</android.dependency.version>
     </properties>
     
     <groupId>com.playhaven.pivotallabs</groupId>
-    <artifactId>source</artifactId>
+    <artifactId>robolectric</artifactId>
+    <version>1.2-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Playhaven Robolectric</name>
     <description>A slightly modified version of the outstanding Robolectric framework from Pivotal Labs.</description>
