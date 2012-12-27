@@ -81,7 +81,7 @@
         </dependency>
 
         <!-- 
-        The key android library dependencies. There is something subtle happening here. The playhaven-maven-android-sdk-deployer sub-project actually provides these by copying them from your local android installation.
+        The key android library dependencies. There is something subtle happening here. The   playhaven-maven-android-sdk-deployer sub-project actually provides these by copying them from your local android installation.
          -->
         <dependency>
             <groupId>com.google.android</groupId>
@@ -89,14 +89,13 @@
             <version>${android.dependency.version}</version>
         </dependency>
 
-        <!-- We need the android libs installed before we run.
+        <!-- We need the android libs installed before we run. -->
         <dependency>
-            <groupId>com.simpligility.android.sdk-deployer</groupId>
-            <artifactId>android-add-ons</artifactId>
-            <version>2.1.0</version>
+          <groupId>com.simpligility.android.sdk-deployer</groupId>
+          <artifactId>maven-android-sdk-deployer</artifactId>
+          <version>2.1.0</version>
         </dependency>
-        -->
-        
+
         <!-- We need this dependency because Robolectric even mocks support classes? -->
         <dependency>
             <groupId>com.google.android</groupId>

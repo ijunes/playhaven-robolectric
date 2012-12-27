@@ -1,3 +1,0 @@
-[submodule "playhaven-maven-android-sdk-deployer"]
-	path = playhaven-maven-android-sdk-deployer
-	url = git@github.com:playhaven/playhaven-maven-android-sdk-deployer.git
